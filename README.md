@@ -16,4 +16,5 @@ Get started with the Java EE Connector Architecture
 ## Links
 
 * https://github.com/dblevins/mdb-improvements (A proposal on how to improve writing inbound JCA connectors)
+* http://blog.dblevins.com/2010/10/ejbnext-connectorbean-api-jax-rs-and.html (A good lookout on what could be done with an improved JCA API)
 * http://jcp.org/en/jsr/detail?id=322 (The JCA specification)

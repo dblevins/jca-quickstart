@@ -3,6 +3,10 @@ jca-quickstart
 
 Get started with the Java EE Connector Architecture
 
+Our goal is to provide an entry point to successful development of JCA connectors. This very powerful part of the JavaEE spec is currently underestimated, as getting started with this technology has been quite difficult so far. In some forums it is even referred to as some sort of black art, which is fortunately only true if you try to get something done with JCA for the first time.
+In order to demystify this technology we started this collection of explanations, examples, links and available connectors, hoping that it will help some of you to harness the possibilities of JCA.
+
+
 # Examples
 
 * http://connectorz.adam-bien.com/ (A sample connector project for easy understanding of JCA)

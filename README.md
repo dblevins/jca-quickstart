@@ -96,14 +96,54 @@ Use the command line, as IDEA currently does not support Resource Adapter Archiv
 
 todo (volunteers wanted :-)
 
-#### Test it
+#### Test it…
 	
 Afterwards you can use your favorite REST client to test the application Adam provided with his example.
 As a REST client you can use either [curl](http://curl.haxx.se/) or [rest-client](http://code.google.com/p/rest-client/); or any other client of your choice.
 The URI for creating a file is:
 
 	http://localhost:8080/jca-file-client/v1/files/file_to_create
-	
+
 Be aware that you need to do a PUT request to store files and a GET with the same URI to retrieve a stored file.
 
+##### …with curl
+
+First create a file using the connector:
+
+	curl -XPUT -H Content-type:text/plain --data-ascii MyTestContent http://localhost:8081/jca-file-client/v1/files/myFileId
+
+> Note: Don't be sruprised, there will be no output from curl. You can add the -v option to see some output.
 	
+Then retrieve it:
+
+	curl -XGET -H Content-type:text/plain http://localhost:8081/jca-file-client/v1/files/myFileId
+
+You should see `MyTestContent` as a result, proving that you got your file content back.
+
+Next let's delete the file we just created:
+
+	curl -XDELETE -H Content-type:text/plain http://localhost:8081/jca-file-client/v1/files/myFileId
+
+And retrieve it again:
+
+	curl -v -XGET -H Content-type:text/plain http://localhost:8081/jca-file-client/v1/files/myFileId
+
+This time the output should look like this:
+
+	* About to connect() to localhost port 8081 (#0)
+	*   Trying 127.0.0.1... connected
+	> GET /jca-file-client/v1/files/myFileId HTTP/1.1
+	> User-Agent: curl/7.22.0 (amd64-pc-win32) libcurl/7.22.0 OpenSSL/0.9.8r zlib/1.2.5
+	> Host: localhost:8081
+	> Accept: */*
+	> Content-type:text/plain
+	>
+	< HTTP/1.1 204 No Content
+	< X-Powered-By: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+	< Server: GlassFish Server Open Source Edition 3.1.2.2
+	< Date: Thu, 15 Nov 2012 15:01:06 GMT
+	<
+	* Connection #0 to host localhost left intact
+	* Closing connection #0
+	
+You can see that it states in the response that there was no content (HTTP code 204).
